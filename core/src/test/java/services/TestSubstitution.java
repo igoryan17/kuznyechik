@@ -1,8 +1,10 @@
 package services;
 
 import models.Block;
+import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.BitSet;
 
 /**
@@ -14,8 +16,12 @@ public class TestSubstitution {
     @Test
     public void testSmokeSubstitution() {
         BitSet bitSet = BitSet.valueOf(blocks);
-        bitSet.set(127);
         Block block = new Block(bitSet);
-        Substitution.substitute(block.toHexArray());
+        byte[] bytes = block.toHexArray();
+        System.out.println();
+        byte[] copy = Arrays.copyOf(bytes, bytes.length);
+        Substitution.substitute(copy);
+        Substitution.revertSubstitution(copy);
+        Assert.assertArrayEquals(bytes, copy);
     }
 }
