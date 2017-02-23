@@ -25,13 +25,13 @@ public class TestPermutation {
 
     @Test
     public void testGivenValues() {
-        String input = "00000000000000000000000000000100";
+        String input = "A5940000000000000000000000000000";
         Block inputBlock = new Block(input);
 
-        String expectedOutput = "94000000000000000000000000000001";
+        String expectedOutput = "64A59400000000000000000000000000";
         Block expectedOutputBlock = new Block(expectedOutput);
 
         byte[] result = Permutation.replace(inputBlock.toHexArray());
-        Assert.assertEquals(expectedOutputBlock.getBits(), BitSet.valueOf(result));
+        Assert.assertArrayEquals(expectedOutputBlock.toHexArray(), result);
     }
 }

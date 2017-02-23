@@ -1,9 +1,7 @@
 package models;
 
 import com.google.common.base.Splitter;
-import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Iterables;
-import com.google.common.primitives.Longs;
 
 import java.util.BitSet;
 
@@ -22,7 +20,10 @@ public class Block {
                 Splitter.fixedLength(16).split(hexString),
                 String.class
         );
-        long[] numbers = Longs.toArray(FluentIterable.from(tokens).transform(s -> Long.parseUnsignedLong(s, 16)).toSet());
+        long[] numbers = new long[] {
+                Long.parseUnsignedLong(tokens[0], 16),
+                Long.parseUnsignedLong(tokens[1], 16)
+        };
         bits = BitSet.valueOf(numbers);
     }
 
