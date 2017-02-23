@@ -16,6 +16,8 @@ public class SumMod2p32 {
             boolean second_bit = (i < second.length()) ? second.get(i) : false;
 
             boolean bit = first_bit ^ second_bit ^ carry;
+
+            // carry = fs + fc + sc, f - first, s - second, c - current carry
             carry = first_bit & second_bit | first_bit & carry | second_bit & carry;
 
             result.set(i, bit);
