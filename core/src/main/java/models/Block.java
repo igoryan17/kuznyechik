@@ -24,9 +24,11 @@ public class Block {
         );
         long[] numbers = Longs.toArray(FluentIterable.from(tokens).transform(s -> Long.parseUnsignedLong(s, 16)).toSet());
 
-        long buff = numbers[0];
-        numbers[0] = numbers[1];
-        numbers[1] = buff;
+        if (numbers.length > 1) {
+            long buff = numbers[0];
+            numbers[0] = numbers[1];
+            numbers[1] = buff;
+        }
 
         bits = BitSet.valueOf(numbers);
     }
