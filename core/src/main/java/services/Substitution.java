@@ -29,7 +29,7 @@ public class Substitution {
     public static void substitute(byte[] inputBlock) {
         checkSize(inputBlock);
         for (int i = 0; i < inputBlock.length; ++i) {
-            inputBlock[i] = SUBSTITUTION_TABLE.get(inputBlock[i]).byteValue();
+            inputBlock[i] = SUBSTITUTION_TABLE.get(inputBlock[i] & 0xFF).byteValue();
         }
     }
 
@@ -42,7 +42,7 @@ public class Substitution {
     public static void revertSubstitution(byte[] inputBlock) {
         checkSize(inputBlock);
         for (int i = 0; i < inputBlock.length; ++i) {
-            inputBlock[i] = (byte) SUBSTITUTION_TABLE.indexOf((int)inputBlock[i]);
+            inputBlock[i] = (byte) SUBSTITUTION_TABLE.indexOf(inputBlock[i] & 0xFF);
         }
     }
 }

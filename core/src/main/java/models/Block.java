@@ -1,6 +1,5 @@
 package models;
 
-import java.util.Arrays;
 import java.util.BitSet;
 
 /**
@@ -22,7 +21,10 @@ public class Block {
         if (result.length > Constants.COUNT_OF_HEX_BLOCKS) {
             throw new IllegalArgumentException("incorrect count of bytes");
         } else if (result.length < Constants.COUNT_OF_HEX_BLOCKS) {
-
+            byte[] completed = new byte[Constants.COUNT_OF_HEX_BLOCKS];
+            System.arraycopy(result, 0, completed, completed.length - result.length, result.length);
+            checkSize(completed);
+            return completed;
         }
         checkSize(result);
         return result;
