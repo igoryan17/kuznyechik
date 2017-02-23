@@ -12,11 +12,11 @@
     <artifactId>kuznyechik-core</artifactId>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>core</artifactId>
-            <version>3.3.0</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
         </dependency>
     </dependencies>
 
