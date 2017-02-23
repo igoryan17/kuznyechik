@@ -1,6 +1,17 @@
 package models;
 
+import com.google.common.base.Function;
+import com.google.common.base.Splitter;
+import com.google.common.collect.FluentIterable;
+import com.google.common.collect.Iterables;
+import com.google.common.primitives.Longs;
+
+import java.nio.ByteBuffer;
+import java.nio.LongBuffer;
 import java.util.BitSet;
+import java.util.List;
+
+import static com.google.common.collect.FluentIterable.from;
 
 /**
  * Created by igoryan on 22.02.2017.
@@ -10,6 +21,15 @@ public class Block {
 
     public Block(BitSet bits) {
         this.bits = bits;
+    }
+
+    public Block(String hexString) {
+        String[] tokens = Iterables.toArray(
+                Splitter.fixedLength(16).split(hexString),
+                String.class
+        );
+        long[] numbers = Longs.toArray(FluentIterable.from(tokens).transform(s -> Long.parseUnsignedLong(s, 16)).toSet());
+        bits = BitSet.valueOf(numbers);
     }
 
     public Block(long number) {
