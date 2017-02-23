@@ -11,23 +11,27 @@ import java.util.BitSet;
 public class TestBlock {
     @Test
     public void TestHexInit() {
-        BitSet expected = new BitSet(4);
+        BitSet exp = new BitSet(4);
         Block current = new Block("a");
 
-        expected.set(1);
-        expected.set(3);
+        exp.set(1);
+        exp.set(3);
 
-        Assert.assertArrayEquals(expected.toByteArray(), current.toHexArray());
+        Block expected = new Block(exp);
+
+        Assert.assertArrayEquals(expected.toHexArray(), current.toHexArray());
     }
 
     @Test
     public void TestLongInit() {
-        BitSet expected = new BitSet(4);
+        BitSet exp = new BitSet(4);
         Block current = new Block(10);
 
-        expected.set(1);
-        expected.set(3);
+        exp.set(1);
+        exp.set(3);
 
-        Assert.assertArrayEquals(expected.toByteArray(), current.toHexArray());
+        Block expected = new Block(exp);
+
+        Assert.assertArrayEquals(expected.toHexArray(), current.toHexArray());
     }
 }
