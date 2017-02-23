@@ -24,7 +24,6 @@ public class GaloisField {
 
     public GaloisField(long number) {
         coefficients = BitSet.valueOf(new long[] {number});
-        clearFirstsFalseHighBits(coefficients);
     }
 
     public GaloisField(byte number) {
@@ -33,7 +32,6 @@ public class GaloisField {
 
     public void add(GaloisField another) {
         coefficients.xor(another.getCoefficients());
-        clearFirstsFalseHighBits(coefficients);
     }
 
     public void div() {
@@ -69,7 +67,6 @@ public class GaloisField {
                 result.set(i + j, result.get(i + j) ^ first.get(i) && second.get(j));
             }
         }
-        clearFirstsFalseHighBits(result);
         return result;
     }
 

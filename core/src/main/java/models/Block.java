@@ -44,7 +44,7 @@ public class Block {
         return result;
     }
 
-    public void merge(byte[] hexBlocks) {
+    public void update(byte[] hexBlocks) {
         checkSize(hexBlocks);
         bits = BitSet.valueOf(hexBlocks);
     }

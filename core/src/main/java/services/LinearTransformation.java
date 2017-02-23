@@ -9,6 +9,10 @@ import java.util.*;
  * Created by igoryan on 23.02.2017.
  */
 public class LinearTransformation {
+    /*ℓ(a15, …, a0) = ∇(148 ∙ ∆(a15) + 32 ∙ ∆(a14) + 133 ∙ ∆(a13) + 16 ∙ ∆(a12) +
+    194 ∙ ∆(a11) + 192 ∙ ∆(a10) + 1 ∙ ∆(a9) + 251 ∙ ∆(a8) + 1 ∙ ∆(a7) + 192 ∙ ∆(a6) +
+    194 ∙ ∆(a5) + 16 ∙ ∆(a4) + 133 ∙ ∆(a3) + 32 ∙ ∆(a2) + 148 ∙ ∆(a1) + 1 ∙ ∆(a0))*/
+
     public static final List<GaloisField> coefficients = Arrays.asList(
             new GaloisField(148),
             new GaloisField(32),

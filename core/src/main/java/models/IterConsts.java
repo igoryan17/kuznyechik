@@ -13,7 +13,7 @@ public class IterConsts {
             consts[i] = new Block(i + 1);
             byte[] arr = consts[i].toHexArray();
             Permutation.replace16Times(arr);
-            consts[i].merge(arr);
+            consts[i].update(arr);
         }
     }
 

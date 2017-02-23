@@ -14,7 +14,7 @@ public class FeistelFunction {
         byte[] bytesOfA1 = a1.toHexArray();
         Substitution.substitute(bytesOfA1);
         Permutation.replace16Times(bytesOfA1);
-        a1.merge(bytesOfA1);
+        a1.update(bytesOfA1);
         a0.getBits().xor(a1.getBits());
         cartesianProductOfBlocks.setA0(a1);
         cartesianProductOfBlocks.setA1(a0);

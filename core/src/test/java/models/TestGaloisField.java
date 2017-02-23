@@ -106,4 +106,27 @@ public class TestGaloisField {
         GaloisField actual = new GaloisField(number);
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void testAdd() {
+        BitSet firstBits = new BitSet(8);
+        // x^7 + x^6 + x
+        firstBits.set(7);
+        firstBits.set(6);
+        firstBits.set(1);
+        GaloisField first = new GaloisField(firstBits);
+        BitSet secondBits = new BitSet(7);
+        // x^6 + x^5
+        secondBits.set(6);
+        secondBits.set(5);
+        GaloisField second = new GaloisField(secondBits);
+        BitSet expectedBits = new BitSet(8);
+        // x^7 + x^5 + x
+        expectedBits.set(7);
+        expectedBits.set(5);
+        expectedBits.set(1);
+        GaloisField expected = new GaloisField(expectedBits);
+        second.add(first);
+        Assert.assertEquals(expected, second);
+    }
 }

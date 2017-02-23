@@ -23,4 +23,14 @@ public class TestSubstitution {
         Substitution.revertSubstitution(copy);
         Assert.assertArrayEquals(bytes, copy);
     }
+
+    @Test
+    public void testSubstitutionByValues() {
+        Block input = new Block("ffeeddccbbaa99881122334455667700");
+        Block expectedOutput = new Block("b66cd8887d38e8d77765aeea0c9a7efc");
+        byte[] inputs = input.toHexArray();
+        byte[] expectedOutPuts = expectedOutput.toHexArray();
+        Substitution.substitute(inputs);
+        Assert.assertArrayEquals(expectedOutPuts, inputs);
+    }
 }
