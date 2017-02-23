@@ -22,9 +22,13 @@ public class GaloisField {
         this.coefficients = coefficients;
     }
 
-    public GaloisField(int number) {
+    public GaloisField(long number) {
         coefficients = BitSet.valueOf(new long[] {number});
         clearFirstsFalseHighBits(coefficients);
+    }
+
+    public GaloisField(byte number) {
+        coefficients = BitSet.valueOf(new byte[] {number});
     }
 
     public void add(GaloisField another) {

@@ -93,4 +93,17 @@ public class TestGaloisField {
         GaloisField actual = GaloisField.multiple(firstPolynomial, secondPolynomial);
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void testConstructor() {
+        long number = 194; //11000010
+        BitSet bitSet = new BitSet(8);
+        // x^7 + x^6 + x
+        bitSet.set(7);
+        bitSet.set(6);
+        bitSet.set(1);
+        GaloisField expected = new GaloisField(bitSet);
+        GaloisField actual = new GaloisField(number);
+        Assert.assertEquals(expected, actual);
+    }
 }
