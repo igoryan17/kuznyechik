@@ -1,5 +1,6 @@
 package services;
 
+import models.Block;
 import models.GaloisField;
 
 import java.util.*;
@@ -26,7 +27,8 @@ public class LinearTransformation {
             new GaloisField(148),
             new GaloisField(1));
 
-    public static byte transform(byte[] input) {
+    public static byte transform(byte... input) {
+        Block.checkSize(input);
         List<GaloisField> galoisFields = new ArrayList<GaloisField>(input.length);
         for (int i = 0; i < input.length; ++i) {
             GaloisField polynomial = new GaloisField(input[i]);
