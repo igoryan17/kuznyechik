@@ -23,6 +23,11 @@ public class Block {
                 String.class
         );
         long[] numbers = Longs.toArray(FluentIterable.from(tokens).transform(s -> Long.parseUnsignedLong(s, 16)).toSet());
+
+        long buff = numbers[0];
+        numbers[0] = numbers[1];
+        numbers[1] = buff;
+
         bits = BitSet.valueOf(numbers);
     }
 
