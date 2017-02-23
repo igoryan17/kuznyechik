@@ -1,5 +1,7 @@
 package services;
 
+import models.Constants;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,8 +34,8 @@ public class Substitution {
     }
 
     public static void checkSize(byte[] inputBlock) {
-        if (inputBlock.length != SUBSTITUTION_TABLE.size()) {
-            throw new IllegalArgumentException("input block must have " + SUBSTITUTION_TABLE.size() + " elements");
+        if (inputBlock.length != Constants.COUNT_OF_HEX_BLOCKS) {
+            throw new IllegalArgumentException("input block must have " + Constants.COUNT_OF_HEX_BLOCKS + " elements");
         }
     }
 

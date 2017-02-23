@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Arrays;
 import java.util.BitSet;
 
 /**
@@ -9,12 +10,20 @@ public class Block {
     private BitSet bits;
 
     public Block(BitSet bits) {
-        checkBitSetSize(bits);
         this.bits = bits;
+    }
+
+    public Block(long number) {
+        this.bits = BitSet.valueOf(new long[] {number});
     }
 
     public byte[] toHexArray() {
         byte[] result = bits.toByteArray();
+        if (result.length > Constants.COUNT_OF_HEX_BLOCKS) {
+            throw new IllegalArgumentException("incorrect count of bytes");
+        } else if (result.length < Constants.COUNT_OF_HEX_BLOCKS) {
+
+        }
         checkSize(result);
         return result;
     }
@@ -32,13 +41,6 @@ public class Block {
         if (hexBlocks.length != Constants.COUNT_OF_HEX_BLOCKS) {
             throw new IllegalArgumentException("Array has size " + hexBlocks.length +
                     " expected " + Constants.COUNT_OF_HEX_BLOCKS);
-        }
-    }
-
-    public static void checkBitSetSize(BitSet bits) {
-        if (bits.length() != Constants.SIZE_OF_BLOCKS) {
-            throw new IllegalArgumentException("BitSet has size " + bits.length() +
-                    " expected " + Constants.SIZE_OF_BLOCKS);
         }
     }
 }
