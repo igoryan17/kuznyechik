@@ -24,6 +24,10 @@ public class Block {
         bits = BitSet.valueOf(hexBlocks);
     }
 
+    public BitSet getBits() {
+        return bits;
+    }
+
     public static void checkSize(byte[] hexBlocks) {
         if (hexBlocks.length != Constants.COUNT_OF_HEX_BLOCKS) {
             throw new IllegalArgumentException("Array has size " + hexBlocks.length +

@@ -7,7 +7,7 @@ import java.util.List;
  * Created by igoryan on 22.02.2017.
  */
 public class Substitution {
-    private static final List<Short> SUBSTITUTION_TABLE = Arrays.asList(new Short[]{
+    private static final List<Integer> SUBSTITUTION_TABLE = Arrays.asList(new Integer[]{
             252, 238, 221, 17, 207, 110, 49, 22, 251, 196, 250, 218, 35, 197, 4, 77, 233,
             119, 240, 219, 147, 46, 153, 186, 23, 54, 241, 187, 20, 205, 95, 193, 249, 24, 101,
             90, 226, 92, 239, 33, 129, 28, 60, 66, 139, 1, 142, 79, 5, 132, 2, 174, 227, 106, 143,
@@ -24,23 +24,23 @@ public class Substitution {
             116, 210, 230, 244, 180, 192, 209, 102, 175, 194, 57, 75, 99, 182
     });
 
-    public static void substitute(short[] inputBlock) {
+    public static void substitute(byte[] inputBlock) {
         checkSize(inputBlock);
         for (int i = 0; i < inputBlock.length; ++i) {
-            inputBlock[i] = SUBSTITUTION_TABLE.get(inputBlock[i]);
+            inputBlock[i] = SUBSTITUTION_TABLE.get(inputBlock[i]).byteValue();
         }
     }
 
-    public static void checkSize(short[] inputBlock) {
+    public static void checkSize(byte[] inputBlock) {
         if (inputBlock.length != SUBSTITUTION_TABLE.size()) {
             throw new IllegalArgumentException("input block must have " + SUBSTITUTION_TABLE.size() + " elements");
         }
     }
 
-    public static void revertSubstitution(short[] inputBlock) {
+    public static void revertSubstitution(byte[] inputBlock) {
         checkSize(inputBlock);
         for (int i = 0; i < inputBlock.length; ++i) {
-            inputBlock[i] = (short) SUBSTITUTION_TABLE.indexOf(inputBlock[i]);
+            inputBlock[i] = (byte) SUBSTITUTION_TABLE.indexOf((int)inputBlock[i]);
         }
     }
 }
