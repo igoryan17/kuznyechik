@@ -10,7 +10,7 @@ public class IterConsts {
 
     static {
         for (int i = 0; i < 32; ++i) {
-            consts[i] = new Block(i);
+            consts[i] = new Block(i + 1);
             byte[] arr = consts[i].toHexArray();
             Permutation.replace16Times(arr);
             consts[i].merge(arr);
@@ -18,6 +18,6 @@ public class IterConsts {
     }
 
     public static Block get(int i) {
-        return consts[i];
+        return consts[i - 1];
     }
 }
