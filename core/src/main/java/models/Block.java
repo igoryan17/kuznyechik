@@ -1,20 +1,40 @@
 package models;
 
-import java.nio.ByteBuffer;
 import java.util.BitSet;
 
 /**
  * Created by igoryan on 22.02.2017.
  */
 public class Block {
-    private final BitSet bits = new BitSet(Constants.SIZE_OF_BLOCKS);
+    private BitSet bits;
 
-    public short[] toHexArray() {
-        short[] result = new short[Constants.COUNT_OF_HEX_BLOCKS];
-        for (int i = 0; i < result.length; ++i) {
-            ByteBuffer byteBuffer = ByteBuffer.wrap(bits.toByteArray());
-            result[i] = byteBuffer.getShort(2 * i);
-        }
+    public Block(BitSet bits) {
+        checkBitSetSize(bits);
+        this.bits = bits;
+    }
+
+    public byte[] toHexArray() {
+        byte[] result = bits.toByteArray();
+        checkSize(result);
         return result;
+    }
+
+    public void merge(byte[] hexBlocks) {
+        checkSize(hexBlocks);
+        bits = BitSet.valueOf(hexBlocks);
+    }
+
+    public static void checkSize(byte[] hexBlocks) {
+        if (hexBlocks.length != Constants.COUNT_OF_HEX_BLOCKS) {
+            throw new IllegalArgumentException("Array has size " + hexBlocks.length +
+                    " expected " + Constants.COUNT_OF_HEX_BLOCKS);
+        }
+    }
+
+    public static void checkBitSetSize(BitSet bits) {
+        if (bits.length() != Constants.SIZE_OF_BLOCKS) {
+            throw new IllegalArgumentException("BitSet has size " + bits.length() +
+                    " expected " + Constants.SIZE_OF_BLOCKS);
+        }
     }
 }
