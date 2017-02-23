@@ -43,6 +43,7 @@ public class LinearTransformation {
         while (galoisPolynomialsIterator.hasNext()) {
             firstPolynomial.add(galoisPolynomialsIterator.next());
         }
-        return firstPolynomial.getCoefficients().toByteArray()[0];
+        BitSet coefficients = firstPolynomial.getCoefficients();
+        return coefficients.toByteArray()[0];
     }
 }
