@@ -1,6 +1,7 @@
 package services;
 
 import models.Block;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.BitSet;
@@ -17,5 +18,18 @@ public class TestLinearTransformation {
         Block block = new Block(bitSet);
         byte[] bytes = block.toHexArray();
         LinearTransformation.transform(bytes);
+    }
+
+    @Test
+    public void testTransform() {
+        testTransformValues("00000000000000000000000000000100", 0x49);
+        testTransformValues("94000000000000000000000000000001", 0xA5);
+    }
+
+    public void testTransformValues(String hexString, int expected) {
+        Block block = new Block(hexString);
+        byte[] bytes = block.toHexArray();
+        byte result = LinearTransformation.transform(bytes);
+        Assert.assertEquals(expected, Byte.toUnsignedInt(result));
     }
 }

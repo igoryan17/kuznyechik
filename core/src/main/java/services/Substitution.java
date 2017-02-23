@@ -29,7 +29,7 @@ public class Substitution {
     public static void substitute(byte[] inputBlock) {
         checkSize(inputBlock);
         for (int i = 0; i < inputBlock.length; ++i) {
-            inputBlock[i] = SUBSTITUTION_TABLE.get(inputBlock[i] & 0xFF).byteValue();
+            inputBlock[i] = SUBSTITUTION_TABLE.get(Byte.toUnsignedInt(inputBlock[i])).byteValue();
         }
     }
 

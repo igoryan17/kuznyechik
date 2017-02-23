@@ -26,10 +26,6 @@ public class GaloisField {
         coefficients = BitSet.valueOf(new long[] {number});
     }
 
-    public GaloisField(byte number) {
-        coefficients = BitSet.valueOf(new byte[] {number});
-    }
-
     public void add(GaloisField another) {
         coefficients.xor(another.getCoefficients());
     }

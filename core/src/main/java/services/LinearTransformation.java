@@ -33,7 +33,7 @@ public class LinearTransformation {
 
     public static byte transform(byte... input) {
         Block.checkSize(input);
-        List<GaloisField> galoisFields = new ArrayList<GaloisField>(input.length);
+        List<GaloisField> galoisFields = new ArrayList<>(input.length);
         for (int i = 0; i < input.length; ++i) {
             GaloisField polynomial = new GaloisField(input[i]);
             galoisFields.add(GaloisField.multiple(polynomial, coefficients.get(i)));

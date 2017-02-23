@@ -1,9 +1,7 @@
 package models;
 
 import com.google.common.base.Splitter;
-import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Iterables;
-import com.google.common.primitives.Longs;
 
 import java.util.BitSet;
 
@@ -19,17 +17,13 @@ public class Block {
 
     public Block(String hexString) {
         String[] tokens = Iterables.toArray(
-                Splitter.fixedLength(16).split(hexString),
+                Splitter.fixedLength(2).split(hexString),
                 String.class
         );
-        long[] numbers = Longs.toArray(FluentIterable.from(tokens).transform(s -> Long.parseUnsignedLong(s, 16)).toSet());
-
-        if (numbers.length > 1) {
-            long buff = numbers[0];
-            numbers[0] = numbers[1];
-            numbers[1] = buff;
+        byte[] numbers = new byte[Constants.COUNT_OF_HEX_BLOCKS];
+        for (int i = 0; i < numbers.length; ++i) {
+            numbers[i] = (byte) Integer.parseInt(tokens[i], 16);
         }
-
         bits = BitSet.valueOf(numbers);
     }
 
@@ -43,7 +37,7 @@ public class Block {
             throw new IllegalArgumentException("incorrect count of bytes");
         } else if (result.length < Constants.COUNT_OF_HEX_BLOCKS) {
             byte[] completed = new byte[Constants.COUNT_OF_HEX_BLOCKS];
-            System.arraycopy(result, 0, completed, completed.length - result.length, result.length);
+            System.arraycopy(result, 0, completed, 0, result.length);
             checkSize(completed);
             return completed;
         }
