@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>core</module>
+        <module>system</module>
     </modules>
 
     <build>
@@ -24,5 +25,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
