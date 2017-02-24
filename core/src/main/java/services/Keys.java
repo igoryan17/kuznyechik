@@ -26,8 +26,8 @@ public class Keys {
                 prod = FeistelFunction.execute(prod, IterConsts.get(8 * i + j));
             }
 
-            keys[2 * i + 2] = prod.getA1();
-            keys[2 * i + 3] = prod.getA0();
+            keys[2 * i + 2] = prod.getLeft();
+            keys[2 * i + 3] = prod.getRight();
         }
     }
 
