@@ -35,13 +35,17 @@ public class GaloisField {
             int firstHighBit = coefficients.length();
             int lastHighBit = coefficients.length() - GENERIC_POLYNOMIAL.length();
             BitSet firstBits = coefficients.get(lastHighBit, firstHighBit);
-            int j = firstBits.length() - 1;
             firstBits.xor(GENERIC_POLYNOMIAL);
-            for (int i = coefficients.length() - 1; i >= lastHighBit; --i) {
-                coefficients.set(i, firstBits.get(j));
-                --j;
-            }
+            merge(coefficients, firstBits);
             div();
+        }
+    }
+
+    public static void merge(BitSet number, BitSet firstBits) {
+        int numberLength = number.length();
+        number.clear(number.length() - GENERIC_POLYNOMIAL.length(), number.length());
+        for (int i = numberLength - GENERIC_POLYNOMIAL.length(), j = 0; j < firstBits.length(); ++j, ++i) {
+            number.set(i, firstBits.get(j));
         }
     }
 

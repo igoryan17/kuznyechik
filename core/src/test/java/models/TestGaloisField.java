@@ -151,4 +151,18 @@ public class TestGaloisField {
         GaloisField exp = new GaloisField(expected);
         Assert.assertEquals(exp, result);
     }
+
+    @Test
+    public void testMerge() {
+        BitSet number = new BitSet(11);
+        number.set(10);
+        BitSet firstBits = new BitSet(2);
+        firstBits.set(0);
+        firstBits.set(1);
+        BitSet expected = new BitSet(4);
+        expected.set(3);
+        expected.set(2);
+        GaloisField.merge(number, firstBits);
+        Assert.assertEquals(expected, number);
+    }
 }
