@@ -1,13 +1,14 @@
 package services;
 
 import models.Block;
-import models.Data;
+
+import java.util.List;
 
 /**
  * Created by Alexander on 24.02.2017.
  */
 public class Encryption {
-    public static Data encrypt(Block K1, Block K2, Data data) {
+    public static List<Block> encrypt(Block K1, Block K2, List<Block> data) {
         Block prevLeft = K1;
         Block prevRight = K2;
 
@@ -15,7 +16,7 @@ public class Encryption {
             Block left = Keys.GetKey(prevLeft, prevRight, 2 * i - 1);
             Block right = Keys.GetKey(prevLeft, prevRight, 2 * i);
 
-            for (int j = 0; j < data.length(); ++j) {
+            for (int j = 0; j < data.size(); ++j) {
                 data.set(j, lsx(data.get(j), left));
                 if (i != 5) {
                     data.set(j, lsx(data.get(j), right));

@@ -10,4 +10,5 @@ public class Constants {
     public static final Integer SIZE_OF_HEX_BLOCK = 8;
     public static final Integer SIZE_OF_POLYNOMIAL = 8;
     public static final Integer SIZE_OF_FIELD = 256;
+    public static final Integer SIZE_OF_INPUT_HEX_BLOCK = 32;
 }
