@@ -47,6 +47,26 @@ public class Keys {
         return prod;
     }
 
+    public static Block GetKey( Block prevLeftKey, Block prevRightKey, int index) {
+        if (index > 10 || index < 1) {
+            return null;
+        }
+
+        if (index == 1) {
+            return prevLeftKey;
+        }
+
+        if (index == 2) {
+            return prevRightKey;
+        }
+
+        CartesianProductOfBlocks prod = new CartesianProductOfBlocks(prevLeftKey, prevRightKey);
+        int prevLeftIndex = (index % 2 == 1) ? index - 2 : index - 3;
+        prod = CalculateNextKeys(prod, prevLeftIndex);
+
+        return (index % 2 == 1) ? prod.getLeft() : prod.getRight();
+    }
+
     public Block get(int i) {
         return keys[i - 1];
     }

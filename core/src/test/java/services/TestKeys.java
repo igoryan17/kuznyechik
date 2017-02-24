@@ -134,4 +134,12 @@ public class TestKeys {
 
         Assert.assertArrayEquals(K10_exp.toHexArray(),K10_curr.toHexArray());
     }
+
+    @Test
+    public void TestNextKeyByIndex() {
+        Block k7_curr = Keys.GetKey(new Block(k5_exp), new Block(k6_exp), 7);
+        Block k7_expected  = new Block(k7_exp);
+
+        Assert.assertArrayEquals(k7_expected.toHexArray(), k7_curr.toHexArray());
+    }
 }
