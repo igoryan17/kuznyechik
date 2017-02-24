@@ -42,9 +42,11 @@ public class Permutation {
         return blocks;
     }
 
-    public static void revertReplacing16Times(byte[] blocks) {
+    public static byte[] revertReplacing16Times(byte[] blocks) {
         for (int i = 0; i < 16; ++i) {
             blocks = revertReplacing(blocks);
         }
+
+        return blocks;
     }
 }
