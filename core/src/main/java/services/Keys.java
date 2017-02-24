@@ -60,7 +60,10 @@ public class Keys {
             return prevRightKey;
         }
 
-        CartesianProductOfBlocks prod = new CartesianProductOfBlocks(prevLeftKey, prevRightKey);
+        Block plk = new Block((BitSet)prevLeftKey.getBits().clone());
+        Block prk = new Block((BitSet)prevRightKey.getBits().clone());
+
+        CartesianProductOfBlocks prod = new CartesianProductOfBlocks(plk, prk);
         int prevLeftIndex = (index % 2 == 1) ? index : index - 1;
         prod = CalculateNextKeys(prod, prevLeftIndex);
 
