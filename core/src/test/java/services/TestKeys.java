@@ -30,7 +30,7 @@ public class TestKeys {
         Keys keys = new Keys(new Block(k1_str), new Block(k2_str));
 
         Block K3_exp = new Block(k3_exp);
-        Block K3_curr = keys.get(10);
+        Block K3_curr = keys.get(3);
 
         Assert.assertArrayEquals(K3_exp.toHexArray(), K3_curr.toHexArray());
     }
