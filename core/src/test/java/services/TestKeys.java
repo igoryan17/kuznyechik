@@ -1,6 +1,7 @@
 package services;
 
 import models.Block;
+import models.CartesianProductOfBlocks;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -99,5 +100,38 @@ public class TestKeys {
         Block K10_curr = keys.get(10);
 
         Assert.assertArrayEquals(K10_exp.toHexArray(), K10_curr.toHexArray());
+    }
+
+    @Test
+    public void TestNextKeys1to3() {
+        CartesianProductOfBlocks prod = new CartesianProductOfBlocks(new Block(k1_str), new Block(k2_str));
+
+        prod = Keys.CalculateNextKeys(prod, 3);
+        Block K3_exp = new Block(k3_exp);
+        Block K3_curr = prod.getLeft();
+
+        Assert.assertArrayEquals(K3_exp.toHexArray(),K3_curr.toHexArray());
+    }
+
+    @Test
+    public void TestNextKeys1to4() {
+        CartesianProductOfBlocks prod = new CartesianProductOfBlocks(new Block(k1_str), new Block(k2_str));
+
+        prod = Keys.CalculateNextKeys(prod, 3);
+        Block K4_exp = new Block(k4_exp);
+        Block K4_curr = prod.getRight();
+
+        Assert.assertArrayEquals(K4_exp.toHexArray(),K4_curr.toHexArray());
+    }
+
+    @Test
+    public void TestNextKeys7to10() {
+        CartesianProductOfBlocks prod = new CartesianProductOfBlocks(new Block(k7_exp), new Block(k8_exp));
+
+        prod = Keys.CalculateNextKeys(prod, 9);
+        Block K10_exp = new Block(k10_exp);
+        Block K10_curr = prod.getRight();
+
+        Assert.assertArrayEquals(K10_exp.toHexArray(),K10_curr.toHexArray());
     }
 }

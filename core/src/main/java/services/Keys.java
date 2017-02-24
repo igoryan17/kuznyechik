@@ -31,6 +31,22 @@ public class Keys {
         }
     }
 
+    public static CartesianProductOfBlocks CalculateNextKeys(CartesianProductOfBlocks prod, int leftIndex) {
+        if (leftIndex % 2 != 1 || leftIndex > 9 || leftIndex < 1) {
+            return null;
+        }
+
+        if (leftIndex == 1) {
+            return prod;
+        }
+
+        for (int j = 1; j <= 8; j++) {
+            prod = FeistelFunction.execute(prod, IterConsts.get(4 * (leftIndex - 3) + j));
+        }
+
+        return prod;
+    }
+
     public Block get(int i) {
         return keys[i - 1];
     }
