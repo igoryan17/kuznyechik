@@ -1,6 +1,7 @@
 package models;
 
 import com.google.common.base.Splitter;
+import com.google.common.base.Strings;
 import com.google.common.collect.Iterables;
 
 import java.util.BitSet;
@@ -52,6 +53,26 @@ public class Block {
 
     public BitSet getBits() {
         return bits;
+    }
+
+    @Override
+    public String toString() {
+        long[] longs = bits.toLongArray();
+        StringBuilder result = new StringBuilder();
+        if (longs.length != 2) {
+            result.append(Strings.repeat("0", Constants.HALF_OF_HEX_BLOCK));
+            String representation = Long.toUnsignedString(longs[0], 16);
+            result.append(Strings.repeat("0", Constants.HALF_OF_HEX_BLOCK - representation.length()));
+            result.append(representation);
+        } else {
+            String first = Long.toUnsignedString(longs[1], 16);
+            String second = Long.toUnsignedString(longs[0], 16);
+            result.append(Strings.repeat("0", Constants.HALF_OF_HEX_BLOCK - first.length()));
+            result.append(first);
+            result.append(Strings.repeat("0", Constants.HALF_OF_HEX_BLOCK - second.length()));
+            result.append(second);
+        }
+        return result.toString().toLowerCase();
     }
 
     public static void checkSize(byte[] hexBlocks) {
