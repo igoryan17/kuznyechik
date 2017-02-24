@@ -46,4 +46,12 @@ public class TestBlock {
 
         Assert.assertEquals(expected, current);
     }
+
+    @Test
+    public void testToString() {
+        String hexString = "b66cd8887d38e8d77765aeea0c9a7efc";
+        Block block = new Block(hexString);
+        String actualRepresentation = block.toString();
+        Assert.assertEquals(hexString, actualRepresentation.toLowerCase());
+    }
 }
