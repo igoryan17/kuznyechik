@@ -129,4 +129,24 @@ public class TestGaloisField {
         second.add(first);
         Assert.assertEquals(expected, second);
     }
+
+    @Test
+    public void testBigMultiple() {
+        BitSet first = new BitSet(8);
+        //x^7 + x^5 + x^3
+        first.set(7);
+        first.set(5);
+        first.set(3);
+        BitSet second = new BitSet(8);
+        //x^7 + x^2
+        second.set(7);
+        second.set(2);
+        BitSet expected = new BitSet(8);
+        expected.set(7);
+        expected.set(4);
+        expected.set(1);
+        expected.set(0);
+        GaloisField result = GaloisField.multiple(new GaloisField(first), new GaloisField(second));
+        Assert.assertEquals(expected, result);
+    }
 }

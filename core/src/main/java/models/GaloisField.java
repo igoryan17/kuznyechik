@@ -30,28 +30,19 @@ public class GaloisField {
         coefficients.xor(another.getCoefficients());
     }
 
+    //TODO fix it
     public void div() {
         if (coefficients.length() > GENERIC_POLYNOMIAL.length()) {
             int firstHighBit = coefficients.length();
             int lastHighBit = coefficients.length() - GENERIC_POLYNOMIAL.length();
             BitSet firstBits = coefficients.get(lastHighBit, firstHighBit);
             firstBits.xor(GENERIC_POLYNOMIAL);
-            int firstTrueBit = findFirstSetHighBit(firstBits);
-            coefficients = coefficients.get(0, lastHighBit);
-            if (firstTrueBit >= 0) {
-                firstBits = firstBits.get(lastHighBit, firstTrueBit + 1);
-                ByteBuffer byteBuffer = ByteBuffer.wrap(firstBits.toByteArray());
-                byteBuffer.put(coefficients.toByteArray());
-                coefficients = BitSet.valueOf(byteBuffer);
+            int j = firstBits.length() - 1;
+            for (int i = coefficients.length() - 1; i > lastHighBit; --i) {
+                coefficients.set(i, firstBits.get(j));
+                --j;
             }
             div();
-        }
-    }
-
-    public static void clearFirstsFalseHighBits(BitSet bitSet) {
-        int firstSettedHighBit = findFirstSetHighBit(bitSet);
-        if (firstSettedHighBit >= 0) {
-            bitSet = bitSet.get(0, firstSettedHighBit + 1);
         }
     }
 
@@ -60,28 +51,25 @@ public class GaloisField {
         BitSet result = new BitSet(resultLength);
         for (int i = 0; i < first.length(); ++i) {
             for (int j = 0; j < second.length(); ++j) {
-                result.set(i + j, result.get(i + j) ^ first.get(i) && second.get(j));
+                result.set(i + j, result.get(i + j) ^ (first.get(i) && second.get(j)));
             }
         }
         return result;
     }
 
     public static GaloisField multiple(GaloisField first, GaloisField second) {
-        return new GaloisField(multiplePolynomialsCoefficients(first.coefficients, second.coefficients));
+        GaloisField result =  new GaloisField(multiplePolynomialsCoefficients(first.coefficients, second.coefficients));
+        result.div();
+        return result;
     }
 
     public static int findFirstSetHighBit(BitSet bits) {
-        int i = bits.nextSetBit(0);
-        int j;
-        while (i >= 0 && i < bits.length() - 1) {
-            j = bits.nextSetBit(i + 1);
-            if (j < 0) {
+        for (int i = bits.length() - 1; i >= 0; --i) {
+            if (bits.get(i)) {
                 return i;
-            } else {
-                i = j;
             }
         }
-        return i;
+        return -1;
     }
 
     public BitSet getCoefficients() {

@@ -35,8 +35,9 @@ public class LinearTransformation {
         Block.checkSize(input);
         List<GaloisField> galoisFields = new ArrayList<>(input.length);
         for (int i = 0; i < input.length; ++i) {
-            GaloisField polynomial = new GaloisField(input[i]);
-            galoisFields.add(GaloisField.multiple(polynomial, coefficients.get(i)));
+            GaloisField polynomial = new GaloisField(Byte.toUnsignedInt(input[i]));
+            GaloisField multipleWithCoefficient = GaloisField.multiple(polynomial, coefficients.get(i));
+            galoisFields.add(multipleWithCoefficient);
         }
         Iterator<GaloisField> galoisPolynomialsIterator = galoisFields.iterator();
         GaloisField firstPolynomial = galoisPolynomialsIterator.next();

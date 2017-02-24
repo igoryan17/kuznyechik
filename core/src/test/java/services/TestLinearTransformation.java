@@ -22,7 +22,7 @@ public class TestLinearTransformation {
 
     @Test
     public void testTransform() {
-        testTransformValues("00000000000000000000000000000100", 0x49);
+        testTransformValues("00000000000000000000000000000100", 0x94);
         testTransformValues("94000000000000000000000000000001", 0xA5);
     }
 
