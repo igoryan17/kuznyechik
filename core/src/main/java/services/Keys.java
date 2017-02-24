@@ -61,7 +61,7 @@ public class Keys {
         }
 
         CartesianProductOfBlocks prod = new CartesianProductOfBlocks(prevLeftKey, prevRightKey);
-        int prevLeftIndex = (index % 2 == 1) ? index - 2 : index - 3;
+        int prevLeftIndex = (index % 2 == 1) ? index : index - 1;
         prod = CalculateNextKeys(prod, prevLeftIndex);
 
         return (index % 2 == 1) ? prod.getLeft() : prod.getRight();
