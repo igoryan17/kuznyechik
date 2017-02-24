@@ -22,7 +22,7 @@ public class Block {
         );
         byte[] numbers = new byte[Constants.COUNT_OF_HEX_BLOCKS];
         for (int i = 0; i < numbers.length; ++i) {
-            numbers[i] = (byte) Integer.parseInt(tokens[i], 16);
+            numbers[numbers.length - 1 - i] = (byte) Integer.parseInt(tokens[i], 16);
         }
         bits = BitSet.valueOf(numbers);
     }

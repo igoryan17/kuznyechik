@@ -36,7 +36,7 @@ public class LinearTransformation {
         List<GaloisField> galoisFields = new ArrayList<>(input.length);
         for (int i = 0; i < input.length; ++i) {
             GaloisField polynomial = new GaloisField(Byte.toUnsignedInt(input[i]));
-            GaloisField multipleWithCoefficient = GaloisField.multiple(polynomial, coefficients.get(i));
+            GaloisField multipleWithCoefficient = GaloisField.multiple(polynomial, coefficients.get( coefficients.size() - i - 1));
             galoisFields.add(multipleWithCoefficient);
         }
         Iterator<GaloisField> galoisPolynomialsIterator = galoisFields.iterator();
@@ -45,6 +45,10 @@ public class LinearTransformation {
             firstPolynomial.add(galoisPolynomialsIterator.next());
         }
         BitSet coefficients = firstPolynomial.getCoefficients();
+
+        if (coefficients.toByteArray().length == 0)
+            return 0;
+
         return coefficients.toByteArray()[0];
     }
 }

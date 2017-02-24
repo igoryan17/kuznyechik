@@ -142,11 +142,13 @@ public class TestGaloisField {
         second.set(7);
         second.set(2);
         BitSet expected = new BitSet(8);
-        expected.set(7);
+        expected.set(6);
+        expected.set(5);
         expected.set(4);
-        expected.set(1);
+        expected.set(2);
         expected.set(0);
         GaloisField result = GaloisField.multiple(new GaloisField(first), new GaloisField(second));
-        Assert.assertEquals(expected, result);
+        GaloisField exp = new GaloisField(expected);
+        Assert.assertEquals(exp, result);
     }
 }

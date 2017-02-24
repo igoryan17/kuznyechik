@@ -12,7 +12,7 @@ public class IterConsts {
         for (int i = 0; i < 32; ++i) {
             consts[i] = new Block(i + 1);
             byte[] arr = consts[i].toHexArray();
-            Permutation.replace16Times(arr);
+            arr = Permutation.replace16Times(arr);
             consts[i].update(arr);
         }
     }

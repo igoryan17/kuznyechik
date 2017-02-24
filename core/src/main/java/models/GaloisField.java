@@ -30,15 +30,14 @@ public class GaloisField {
         coefficients.xor(another.getCoefficients());
     }
 
-    //TODO fix it
     public void div() {
-        if (coefficients.length() > GENERIC_POLYNOMIAL.length()) {
+        if (coefficients.length() >= GENERIC_POLYNOMIAL.length()) {
             int firstHighBit = coefficients.length();
             int lastHighBit = coefficients.length() - GENERIC_POLYNOMIAL.length();
             BitSet firstBits = coefficients.get(lastHighBit, firstHighBit);
-            firstBits.xor(GENERIC_POLYNOMIAL);
             int j = firstBits.length() - 1;
-            for (int i = coefficients.length() - 1; i > lastHighBit; --i) {
+            firstBits.xor(GENERIC_POLYNOMIAL);
+            for (int i = coefficients.length() - 1; i >= lastHighBit; --i) {
                 coefficients.set(i, firstBits.get(j));
                 --j;
             }

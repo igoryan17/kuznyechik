@@ -9,6 +9,8 @@ import java.util.BitSet;
  * Created by Alexander on 24.02.2017.
  */
 public class TestBlock {
+
+    // Doesn't work: input hex is too short
     @Test
     public void TestHexInit() {
         BitSet exp = new BitSet(4);
@@ -33,5 +35,15 @@ public class TestBlock {
         Block expected = new Block(exp);
 
         Assert.assertArrayEquals(expected.toHexArray(), current.toHexArray());
+    }
+
+    @Test
+    public void TestLongInit2() {
+        Block curr = new Block(1);
+        byte expected = 1;
+
+        byte current = curr.toHexArray()[0];
+
+        Assert.assertEquals(expected, current);
     }
 }

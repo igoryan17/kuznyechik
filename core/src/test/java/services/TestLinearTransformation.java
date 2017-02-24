@@ -32,4 +32,22 @@ public class TestLinearTransformation {
         byte result = LinearTransformation.transform(bytes);
         Assert.assertEquals(expected, Byte.toUnsignedInt(result));
     }
+
+    @Test
+    public void testFromGost1() {
+        Block input = new Block("00000000000000000000000000000100");
+        byte expected = (byte) 0x94;
+
+        byte current = LinearTransformation.transform(input.toHexArray());
+        Assert.assertEquals(expected, current);
+    }
+
+    @Test
+    public void testFromGost2() {
+        Block input = new Block("94000000000000000000000000000001");
+        byte expected = (byte) 0xA5;
+
+        byte current = LinearTransformation.transform(input.toHexArray());
+        Assert.assertEquals(expected, current);
+    }
 }
